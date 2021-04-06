@@ -13,7 +13,7 @@ class Store(db.Model):
         primary_key=True,
         default=uuid.uuid4
     )
-    name = db.Column(db.String(20), nullable=False)
+    name = db.Column(db.String(20), nullable=False, unique=True)
     address = db.Column(db.String(40), nullable=False)
     phone_number = db.Column(db.String(15), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
