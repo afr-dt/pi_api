@@ -10,16 +10,11 @@ def save_data(data):
 def create_store(data):
     store = Store.query.filter_by(name=data['name']).first()
     if not store:
-        new_store = Store(
-            name=data['name'],
-            address=data['address'],
-            phone_number=data['phone_number']
-        )
+        new_store = Store(**data)
         save_data(new_store)
         return {
             'status': 200,
             'message': 'Tienda registrado correctamente!',
-            'data': save_data
         }
     else:
         return {

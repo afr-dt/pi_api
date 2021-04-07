@@ -20,3 +20,29 @@ class StoreSerializer:
             max_length=15
         )
     })
+
+
+class ProductSerializer:
+    api = Namespace('product')
+    product = api.model('product', {
+        'product_id': fields.String(readonly=True),
+        'sku': fields.String(
+            description='Sku',
+            max_length=30
+        ),
+        'name': fields.String(
+            description='Name',
+            min_length=5,
+            max_length=20
+        ),
+        'description': fields.String(
+            description='Description',
+            min_length=10,
+            max_length=40
+        ),
+        'stock': fields.Integer(
+            description='Stock'
+        ),
+        'price': fields.Float(),
+        'store': fields.List(fields.Nested(StoreSerializer.store))
+    })
