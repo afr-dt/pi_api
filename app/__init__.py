@@ -10,5 +10,5 @@ api = Api(
     title='Simple API',
     version='1.0'
 )
-api.add_namespace(store_namespace, path='/v1/store')
-api.add_namespace(product_namespace, path='/v1/product')
+api.add_namespace(store_namespace, path='/api/v1/store')
+api.add_namespace(product_namespace, path='/api/v1/product')

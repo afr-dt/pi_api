@@ -23,12 +23,12 @@ def create_product(data):
         }
 
 
-def get_products():
-    return Product.query.all()
-
-
 def get_product(product_id):
     return Product.query.filter_by(product_id=product_id).first()
+
+
+def get_products():
+    return Product.query.all()
 
 
 def delete_product(product_id):

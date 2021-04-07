@@ -4,7 +4,7 @@ from flask_restplus import Resource
 
 from ..cruds.store import (create_store, delete_store, get_store, get_stores,
                            update_store)
-from ..serializers import StoreSerializer
+from ..serializers import StoreSerializer  # , StoreCreateSerializer
 
 api = StoreSerializer.api
 store = StoreSerializer.store
@@ -29,11 +29,14 @@ class StoreCreateAndList(Resource):
 @api.response(404, 'Store not found')
 class Store(Resource):
     @api.doc('Get a store')
-    @api.marshal_with(store, envelope='data')
+    @api.marshal_with(store)
     def get(self, store_id):
         store = get_store(store_id)
         if not store:
-            api.abort(404)
+            return {
+                'status': 404,
+                'message': 'Store not found!'
+            }
         else:
             return store
 
@@ -53,4 +56,12 @@ class Store(Resource):
 
     def delete(self, store_id):
         store = delete_store(store_id)
-        return None, 204
+        if not store:
+            return {
+                'status': 404,
+                'message': 'Store not found!'
+            }
+        return {
+            'status': 404,
+            'message': 'Store deleted!'
+        }

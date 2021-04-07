@@ -17,7 +17,7 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///test_db_api.db'
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_TEST_URL']
 
 
 class ProductionConfig(Config):

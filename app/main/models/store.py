@@ -19,3 +19,6 @@ class Store(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, onupdate=func.now())
     products = db.relationship('Product', backref='owner')
+
+    def __str__(self):
+        return f'Store: {self.store_id} {self.name}'
